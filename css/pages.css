@@ -1,0 +1,967 @@
+/*
+ * StudySphere - Page Specific Styling
+ * Contains styles for Dashboard, Profile, Notes, Groups, Assignments, Resources, and Forum.
+ */
+
+/* ==========================================================================
+   Dashboard Page
+   ========================================================================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background-color: var(--primary-glow);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    font-family: var(--font-heading);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+.dashboard-left, .dashboard-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.section-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-card-header h2 i {
+    color: var(--primary);
+    width: 20px;
+    height: 20px;
+}
+
+/* Dashboard Widget Lists */
+.dashboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.dashboard-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: rgba(var(--primary-rgb), 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-speed);
+}
+
+.dashboard-item:hover {
+    border-color: rgba(var(--primary-rgb), 0.25);
+    background-color: rgba(var(--primary-rgb), 0.05);
+    transform: translateX(4px);
+}
+
+.dashboard-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dashboard-item-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.dashboard-item-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   Profile Page
+   ========================================================================== */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.profile-sidebar {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-avatar-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 8px;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.25);
+}
+
+.avatar-edit-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+
+.avatar-edit-overlay:hover {
+    transform: scale(1.1);
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.profile-role-badge {
+    margin-top: -8px;
+}
+
+.profile-institution {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.profile-section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 550;
+}
+
+.profile-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+}
+
+.profile-tab-btn {
+    padding: 8px 16px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+}
+
+.profile-tab-btn:hover {
+    color: var(--text-primary);
+    background-color: rgba(var(--primary-rgb), 0.05);
+}
+
+.profile-tab-btn.active {
+    color: #fff;
+    background-color: var(--primary);
+}
+
+[data-theme="light"] .profile-tab-btn.active {
+    color: #fff;
+}
+
+/* ==========================================================================
+   Notes Page
+   ========================================================================== */
+.controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.filters-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 550;
+    transition: all var(--transition-speed);
+}
+
+.filter-btn:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-glow);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.note-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.note-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.note-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.note-description {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.note-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.note-tag {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background-color: rgba(var(--primary-rgb), 0.06);
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+    border-radius: 4px;
+}
+
+.note-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
+}
+
+.note-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.note-author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.note-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   Study Groups Page
+   ========================================================================== */
+.groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.group-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.group-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.group-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.group-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.group-details-list {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.group-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.group-detail-item i {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+}
+
+.group-members {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.member-avatars {
+    display: flex;
+    margin-right: 8px;
+}
+
+.member-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-secondary);
+    margin-right: -8px;
+    object-fit: cover;
+}
+
+.member-avatar:last-child {
+    margin-right: 0;
+}
+
+.member-count-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Assignment Tracker Page
+   ========================================================================== */
+.assignment-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.assignment-tab {
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.assignment-tab:hover {
+    color: var(--text-primary);
+    background-color: rgba(var(--primary-rgb), 0.05);
+}
+
+.assignment-tab.active {
+    color: white;
+    background-color: var(--primary);
+}
+
+.assignments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.assignment-row {
+    display: grid;
+    grid-template-columns: 2.5fr 1.5fr 1.2fr 1fr 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+}
+
+.assignment-title-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.assignment-title-col h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.assignment-course {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.assignment-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.assignment-date.overdue {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.assignment-date.upcoming {
+    color: var(--warning);
+    font-weight: 600;
+}
+
+.assignment-status-select {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    font-weight: 550;
+    outline: none;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Resource Library Page
+   ========================================================================== */
+.resources-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+}
+
+.resources-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resource-category-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.resource-category-btn:hover {
+    background-color: rgba(var(--primary-rgb), 0.04);
+    color: var(--text-primary);
+}
+
+.resource-category-btn.active {
+    background-color: var(--primary-glow);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.resource-category-count {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.resource-category-btn.active .resource-category-count {
+    background-color: var(--primary);
+    color: white;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.resource-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.resource-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.resource-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.resource-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    flex: 1;
+}
+
+.resource-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.resource-link-btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ==========================================================================
+   Discussion Forum Page
+   ========================================================================== */
+.forum-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+}
+
+.forum-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.forum-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.forum-post-card {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+.forum-post-vote-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 10px 4px;
+}
+
+.vote-btn {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.vote-btn:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.vote-count {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin: 4px 0;
+    color: var(--text-primary);
+}
+
+.forum-post-content-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.forum-post-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.forum-post-title:hover {
+    color: var(--primary);
+}
+
+.forum-post-excerpt {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.forum-post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.forum-post-author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.forum-post-author-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.forum-post-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.forum-post-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.forum-post-action-btn:hover {
+    color: var(--primary);
+}
+
+/* Discussion Detail Modal / View */
+.thread-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.thread-original-post {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.thread-post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.thread-author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.thread-author-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.thread-post-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.thread-post-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.thread-post-content {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.thread-replies-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.thread-replies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.thread-reply-card {
+    padding: 16px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.thread-reply-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.thread-reply-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.thread-reply-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.thread-reply-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.thread-reply-content {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.thread-reply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ==========================================================================
+   Responsive Page Rules
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .resources-layout, .forum-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .resources-sidebar, .forum-sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+    
+    .resource-category-btn {
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-sidebar {
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .assignment-row {
+        grid-template-columns: 2fr 1fr;
+        gap: 12px;
+    }
+    
+    .assignment-course, .assignment-priority, .assignment-actions-col {
+        grid-column: span 1;
+    }
+    
+    .assignment-date {
+        grid-column: span 2;
+    }
+    
+    .assignment-status-col {
+        grid-column: span 1;
+    }
+}
+@media (max-width: 600px) {
+    .assignment-row {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+    .assignment-title-col, .assignment-date, .assignment-status-col, .assignment-actions-col {
+        grid-column: span 1;
+    }
+}

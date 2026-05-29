@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudySphere is a premium student collaboration and productivity platform featuring note sharing, study groups, assignment tracking, resources library, and forums.">
+    <meta name="keywords" content="student productivity, note sharing, study groups, assignment tracker, academic resources, student forum, collaboration platform">
+    <meta name="author" content="StudySphere Team">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="StudySphere - Student Collaboration & Productivity Platform">
+    <meta property="og:description" content="Streamline your study routine, collaborate with peers, share notes, track assignments, and ask questions in forums.">
+    <meta property="og:type" content="website">
+    
+    <title>StudySphere - Student Collaboration & Productivity Platform</title>
+    
+    <!-- Core & Pages CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    
+    <!-- Main Application Wrapper -->
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation Drawer -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">S</div>
+                <div class="logo-text">StudySphere</div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" id="nav-dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#notes" class="nav-item" id="nav-notes">
+                    <i data-lucide="file-text"></i>
+                    <span>Note Sharing</span>
+                </a>
+                <a href="#groups" class="nav-item" id="nav-groups">
+                    <i data-lucide="users"></i>
+                    <span>Study Groups</span>
+                </a>
+                <a href="#assignments" class="nav-item" id="nav-assignments">
+                    <i data-lucide="check-square"></i>
+                    <span>Assignments</span>
+                </a>
+                <a href="#resources" class="nav-item" id="nav-resources">
+                    <i data-lucide="library"></i>
+                    <span>Resource Library</span>
+                </a>
+                <a href="#forum" class="nav-item" id="nav-forum">
+                    <i data-lucide="message-square"></i>
+                    <span>Discussion Forum</span>
+                </a>
+                <a href="#profile" class="nav-item" id="nav-profile">
+                    <i data-lucide="user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+            
+            <!-- Sidebar Footer with Mini Profile -->
+            <div class="sidebar-footer">
+                <div class="user-mini-profile" id="mini-profile-container" title="View Profile">
+                    <!-- Loaded dynamically via js/ui.js -->
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Header / Top Navigation Bar -->
+            <header class="top-bar">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Sidebar Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+                
+                <!-- Global Search Widget -->
+                <div class="search-bar-container">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="global-search" class="search-input" placeholder="Search across active tab...">
+                </div>
+                
+                <!-- Utility Bar Actions -->
+                <div class="top-bar-actions">
+                    <!-- Light / Dark Mode Toggle Button -->
+                    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+                        <i data-lucide="sun"></i>
+                    </button>
+                    
+                    <!-- Approaching Deadlines Notification Button -->
+                    <button class="notifications-btn" id="notifications-btn" aria-label="View notifications" title="Approaching Deadlines">
+                        <i data-lucide="bell"></i>
+                        <span class="notification-badge" id="notif-badge" style="display: none;">0</span>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Dynamic Router View Container -->
+            <div class="page-container" id="page-container">
+                <!-- Injected dynamically by js/pages.js -->
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- Toast container for notification prompts -->
+    <div class="toast-container" id="global-toast-container"></div>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Fallback in case CDN fails
+        window.addEventListener('error', function(e) {
+            if (e.target.src && e.target.src.indexOf('lucide') !== -1) {
+                console.warn('Lucide CDN failed to load. Falling back to text placeholders.');
+            }
+        }, true);
+    </script>
+    
+    <!-- Application Scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
