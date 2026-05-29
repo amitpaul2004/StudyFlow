@@ -92,7 +92,7 @@ Setting up your environment takes less than a minute:
 
 1. **Fork and Clone**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/StudyFlow.git
+   git clone https://github.com/amitpaul2004/StudyFlow.git
    cd StudyFlow
    ```
 2. **Run a Local Server** (Optional, but recommended for loading icons and avoiding CORS issues):
