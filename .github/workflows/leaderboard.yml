@@ -1,0 +1,51 @@
+name: Contributors Leaderboard
+
+on:
+  schedule:
+    # Every 6 hours (00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+# Allow the workflow to push the regenerated leaderboard back to the repo.
+permissions:
+  contents: write
+
+concurrency:
+  group: leaderboard
+  cancel-in-progress: true
+
+jobs:
+  build-leaderboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate leaderboard
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/generate-leaderboard.js
+
+      - name: Upload leaderboard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: leaderboard
+          path: .github/LEADERBOARD.md
+
+      - name: Commit updated leaderboard
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- .github/LEADERBOARD.md; then
+            echo "No changes to the leaderboard."
+            exit 0
+          fi
+          git add .github/LEADERBOARD.md
+          git commit -m "chore: update contributors leaderboard [skip ci]"
+          git push
