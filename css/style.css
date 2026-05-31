@@ -790,3 +790,27 @@ textarea.form-control {
         width: 95%;
     }
 }
+/* ==========================================================================
+   Navbar Improvements — Feature #3
+   ========================================================================== */
+
+.navbar-page-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+}
+
+.navbar-page-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-color, #6c63ff);
+}
+
+@media (max-width: 480px) {
+  .navbar-page-title span {
+    font-size: 0.85rem;
+  }
+}

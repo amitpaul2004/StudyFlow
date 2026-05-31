@@ -195,7 +195,26 @@ function handleRouteChange() {
             item.classList.remove('active');
         }
     });
+// Update Navbar Page Title
+    const pageTitles = {
+        dashboard: { name: 'Dashboard', icon: 'layout-dashboard' },
+        notes: { name: 'Note Sharing', icon: 'file-text' },
+        groups: { name: 'Study Groups', icon: 'users' },
+        assignments: { name: 'Assignments', icon: 'check-square' },
+        resources: { name: 'Resource Library', icon: 'library' },
+        forum: { name: 'Discussion Forum', icon: 'message-square' },
+        profile: { name: 'Profile', icon: 'user' }
+    };
 
+    const pageInfo = pageTitles[hash] || pageTitles['dashboard'];
+    const navbarName = document.getElementById('navbar-page-name');
+    const navbarIcon = document.getElementById('navbar-page-icon');
+
+    if (navbarName) navbarName.textContent = pageInfo.name;
+    if (navbarIcon) {
+        navbarIcon.setAttribute('data-lucide', pageInfo.icon);
+        lucide.createIcons();
+    }
     const pageContainer = document.getElementById('page-container');
     if (pageContainer) {
         // Fade out transition
