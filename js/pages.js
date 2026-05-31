@@ -1334,7 +1334,29 @@ window.pages = (() => {
                     <p>Customize your identity, showcase skills, and view bookmarked items.</p>
                 </div>
             </div>
-
+<!-- Profile Stats Row -->
+<div class="profile-stats-row">
+    <div class="glass-card profile-stat-card">
+        <i data-lucide="file-text"></i>
+        <div class="profile-stat-value">${window.db.getNotes().filter(n => n.author === 'profile-default').length}</div>
+        <div class="profile-stat-label">Notes Uploaded</div>
+    </div>
+    <div class="glass-card profile-stat-card">
+        <i data-lucide="users"></i>
+        <div class="profile-stat-value">${window.db.getGroups().filter(g => g.members.includes('profile-default')).length}</div>
+        <div class="profile-stat-label">Study Groups</div>
+    </div>
+    <div class="glass-card profile-stat-card">
+        <i data-lucide="check-square"></i>
+        <div class="profile-stat-value">${window.db.getAssignments().filter(a => a.status === 'Completed').length}</div>
+        <div class="profile-stat-label">Assignments Done</div>
+    </div>
+    <div class="glass-card profile-stat-card">
+        <i data-lucide="message-square"></i>
+        <div class="profile-stat-value">${window.db.getForum().filter(f => f.author === 'profile-default').length}</div>
+        <div class="profile-stat-label">Forum Posts</div>
+    </div>
+</div>
             <div class="profile-grid">
                 <!-- Left Sidebar Details -->
                 <div class="glass-card profile-sidebar">
