@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebar();
     initNotifications();
     checkUpcomingAssignments();
+    initResponsiveSidebar();
 });
 
 // ==========================================================================
@@ -167,8 +168,11 @@ const routes = {
     'groups': { render: 'renderGroups', title: 'Study Groups' },
     'assignments': { render: 'renderAssignments', title: 'Assignments Tracker' },
     'resources': { render: 'renderResources', title: 'Resource Library' },
-    'forum': { render: 'renderForum', title: 'Discussion Forum' },
-    'profile': { render: 'renderProfile', title: 'Student Profile' }
+    'forum':       { render: 'renderForum',       title: 'Discussion Forum' },
+    'timer':       { render: 'renderTimer',       title: 'Pomodoro Timer' },
+    'flashcards':  { render: 'renderFlashcards',  title: 'Flashcards' },
+    'calendar':    { render: 'renderCalendar',    title: 'Study Calendar' },
+    'profile':     { render: 'renderProfile',     title: 'Student Profile' }
 };
 
 function initRouter() {
@@ -339,3 +343,38 @@ function checkUpcomingAssignments() {
 // Export utility functions
 window.renderMiniProfile = renderMiniProfile;
 window.checkUpcomingAssignments = checkUpcomingAssignments;
+// ==========================================================================
+// Responsive Sidebar — Mobile Toggle (Fix #2)
+// ==========================================================================
+function initResponsiveSidebar() {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    const overlay = document.createElement('div');
+    overlay.classList.add('sidebar-overlay');
+    document.body.appendChild(overlay);
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+    }
+
+    overlay.addEventListener('click', closeSidebar);
+
+    document.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) closeSidebar();
+        });
+    });
+}
