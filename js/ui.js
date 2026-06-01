@@ -167,8 +167,11 @@ const routes = {
     'groups': { render: 'renderGroups', title: 'Study Groups' },
     'assignments': { render: 'renderAssignments', title: 'Assignments Tracker' },
     'resources': { render: 'renderResources', title: 'Resource Library' },
-    'forum': { render: 'renderForum', title: 'Discussion Forum' },
-    'profile': { render: 'renderProfile', title: 'Student Profile' }
+    'forum':       { render: 'renderForum',       title: 'Discussion Forum' },
+    'timer':       { render: 'renderTimer',       title: 'Pomodoro Timer' },
+    'flashcards':  { render: 'renderFlashcards',  title: 'Flashcards' },
+    'calendar':    { render: 'renderCalendar',    title: 'Study Calendar' },
+    'profile':     { render: 'renderProfile',     title: 'Student Profile' }
 };
 
 function initRouter() {
