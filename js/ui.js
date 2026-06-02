@@ -168,8 +168,11 @@ const routes = {
     'groups': { render: 'renderGroups', title: 'Study Groups' },
     'assignments': { render: 'renderAssignments', title: 'Assignments Tracker' },
     'resources': { render: 'renderResources', title: 'Resource Library' },
-    'forum': { render: 'renderForum', title: 'Discussion Forum' },
-    'profile': { render: 'renderProfile', title: 'Student Profile' }
+    'forum':       { render: 'renderForum',       title: 'Discussion Forum' },
+    'timer':       { render: 'renderTimer',       title: 'Pomodoro Timer' },
+    'flashcards':  { render: 'renderFlashcards',  title: 'Flashcards' },
+    'calendar':    { render: 'renderCalendar',    title: 'Study Calendar' },
+    'profile':     { render: 'renderProfile',     title: 'Student Profile' }
 };
 
 function initRouter() {
@@ -196,7 +199,26 @@ function handleRouteChange() {
             item.classList.remove('active');
         }
     });
+// Update Navbar Page Title
+    const pageTitles = {
+        dashboard: { name: 'Dashboard', icon: 'layout-dashboard' },
+        notes: { name: 'Note Sharing', icon: 'file-text' },
+        groups: { name: 'Study Groups', icon: 'users' },
+        assignments: { name: 'Assignments', icon: 'check-square' },
+        resources: { name: 'Resource Library', icon: 'library' },
+        forum: { name: 'Discussion Forum', icon: 'message-square' },
+        profile: { name: 'Profile', icon: 'user' }
+    };
 
+    const pageInfo = pageTitles[hash] || pageTitles['dashboard'];
+    const navbarName = document.getElementById('navbar-page-name');
+    const navbarIcon = document.getElementById('navbar-page-icon');
+
+    if (navbarName) navbarName.textContent = pageInfo.name;
+    if (navbarIcon) {
+        navbarIcon.setAttribute('data-lucide', pageInfo.icon);
+        lucide.createIcons();
+    }
     const pageContainer = document.getElementById('page-container');
     if (pageContainer) {
         // Fade out transition
