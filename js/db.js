@@ -239,6 +239,36 @@ const MOCK_FORUM = [
     }
 ];
 
+// Initial Mock Flashcard Decks
+const MOCK_FLASHCARD_DECKS = [
+    {
+        id: 'deck-1',
+        title: 'Data Structures Basics',
+        subject: 'Computer Science',
+        color: '#6366f1',
+        cards: [
+            { id: 'card-1', front: 'What is a Stack?', back: 'A linear data structure following LIFO (Last In, First Out). Operations: push(), pop(), peek().', known: false },
+            { id: 'card-2', front: 'Time complexity of Binary Search?', back: 'O(log n) — divides the search space in half at each step. Requires a sorted array.', known: false },
+            { id: 'card-3', front: 'What is Dynamic Programming?', back: 'A method for solving complex problems by breaking them into overlapping subproblems and storing results (memoization/tabulation).', known: false }
+        ],
+        createdBy: 'profile-default',
+        date: '2026-05-28'
+    },
+    {
+        id: 'deck-2',
+        title: 'Calculus Key Formulas',
+        subject: 'Mathematics',
+        color: '#10b981',
+        cards: [
+            { id: 'card-4', front: 'Derivative of sin(x)?', back: 'cos(x)', known: false },
+            { id: 'card-5', front: 'What is the Chain Rule?', back: 'd/dx[f(g(x))] = f\'(g(x)) · g\'(x) — differentiate the outer function, then multiply by the derivative of the inner function.', known: false },
+            { id: 'card-6', front: 'What is the Power Rule?', back: 'd/dx[x^n] = n · x^(n-1)', known: true }
+        ],
+        createdBy: 'profile-default',
+        date: '2026-05-29'
+    }
+];
+
 // DB Helper Functions
 const db = {
     init() {
@@ -249,7 +279,16 @@ const db = {
             localStorage.setItem(DB_PREFIX + 'assignments', JSON.stringify(MOCK_ASSIGNMENTS));
             localStorage.setItem(DB_PREFIX + 'resources', JSON.stringify(MOCK_RESOURCES));
             localStorage.setItem(DB_PREFIX + 'forum', JSON.stringify(MOCK_FORUM));
+            localStorage.setItem(DB_PREFIX + 'flashcards', JSON.stringify(MOCK_FLASHCARD_DECKS));
+            localStorage.setItem(DB_PREFIX + 'timer_sessions', JSON.stringify([]));
             console.log('StudySphere database initialized with mock data.');
+        }
+        // Ensure new keys exist for returning users
+        if (!localStorage.getItem(DB_PREFIX + 'flashcards')) {
+            localStorage.setItem(DB_PREFIX + 'flashcards', JSON.stringify(MOCK_FLASHCARD_DECKS));
+        }
+        if (!localStorage.getItem(DB_PREFIX + 'timer_sessions')) {
+            localStorage.setItem(DB_PREFIX + 'timer_sessions', JSON.stringify([]));
         }
     },
 
@@ -554,8 +593,72 @@ const db = {
         let forum = this.getForum();
         forum = forum.filter(p => p.id !== id);
         this.saveForumList(forum);
+    },
+
+    // FLASHCARD DECKS
+    getFlashcardDecks() {
+        return JSON.parse(localStorage.getItem(DB_PREFIX + 'flashcards')) || [];
+    },
+    saveFlashcardDecks(decks) {
+        localStorage.setItem(DB_PREFIX + 'flashcards', JSON.stringify(decks));
+    },
+    createDeck(deck) {
+        const decks = this.getFlashcardDecks();
+        const newDeck = {
+            id: 'deck-' + Date.now(),
+            cards: [],
+            createdBy: 'profile-default',
+            date: new Date().toISOString().split('T')[0],
+            ...deck
+        };
+        decks.push(newDeck);
+        this.saveFlashcardDecks(decks);
+        return newDeck;
+    },
+    deleteDeck(id) {
+        const decks = this.getFlashcardDecks().filter(d => d.id !== id);
+        this.saveFlashcardDecks(decks);
+    },
+    addCardToDeck(deckId, card) {
+        const decks = this.getFlashcardDecks();
+        const deck = decks.find(d => d.id === deckId);
+        if (deck) {
+            deck.cards.push({ id: 'card-' + Date.now(), known: false, ...card });
+            this.saveFlashcardDecks(decks);
+        }
+        return deck;
+    },
+    updateCardKnown(deckId, cardId, known) {
+        const decks = this.getFlashcardDecks();
+        const deck = decks.find(d => d.id === deckId);
+        if (deck) {
+            const card = deck.cards.find(c => c.id === cardId);
+            if (card) card.known = known;
+            this.saveFlashcardDecks(decks);
+        }
+    },
+    resetDeckProgress(deckId) {
+        const decks = this.getFlashcardDecks();
+        const deck = decks.find(d => d.id === deckId);
+        if (deck) {
+            deck.cards.forEach(c => c.known = false);
+            this.saveFlashcardDecks(decks);
+        }
+    },
+
+    // TIMER SESSIONS
+    getTimerSessions() {
+        return JSON.parse(localStorage.getItem(DB_PREFIX + 'timer_sessions')) || [];
+    },
+    addTimerSession(session) {
+        const sessions = this.getTimerSessions();
+        sessions.push({ id: 'sess-' + Date.now(), ...session });
+        // Keep last 100 sessions
+        if (sessions.length > 100) sessions.shift();
+        localStorage.setItem(DB_PREFIX + 'timer_sessions', JSON.stringify(sessions));
     }
 };
+
 
 // Initialize DB on script load
 db.init();
