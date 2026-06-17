@@ -656,9 +656,34 @@ const db = {
         // Keep last 100 sessions
         if (sessions.length > 100) sessions.shift();
         localStorage.setItem(DB_PREFIX + 'timer_sessions', JSON.stringify(sessions));
+    },
+
+    // BACKUP & EXPORT
+    exportData() {
+        const data = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith(DB_PREFIX)) {
+                data[key] = localStorage.getItem(key);
+            }
+        }
+        return JSON.stringify(data);
+    },
+    importData(jsonData) {
+        try {
+            const data = JSON.parse(jsonData);
+            for (const key in data) {
+                if (key.startsWith(DB_PREFIX)) {
+                    localStorage.setItem(key, data[key]);
+                }
+            }
+            return true;
+        } catch (e) {
+            console.error("Failed to import data", e);
+            return false;
+        }
     }
 };
-
 
 // Initialize DB on script load
 db.init();
