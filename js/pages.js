@@ -1371,6 +1371,10 @@ window.pages = (() => {
                     <p class="profile-institution"><i data-lucide="map-pin"></i> ${profile.institution}</p>
                     <p style="font-size:0.85rem; color:var(--text-secondary)">${profile.email}</p>
                     <button class="btn btn-secondary btn-sm" style="width:100%; margin-top:8px;" onclick="openModal('edit-profile-modal')"><i data-lucide="edit-3"></i> Edit Profile</button>
+                    <hr style="margin: 16px 0; border: 0; border-top: 1px solid var(--border);">
+                    <button class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:8px;" onclick="pages.exportData()"><i data-lucide="download"></i> Export Data</button>
+                    <button class="btn btn-secondary btn-sm" style="width:100%;" onclick="document.getElementById('import-file-input').click()"><i data-lucide="upload"></i> Import Data</button>
+                    <input type="file" id="import-file-input" style="display:none;" accept=".json" onchange="pages.importData(event)">
                 </div>
 
                 <!-- Right Contents -->
@@ -1597,6 +1601,34 @@ window.pages = (() => {
         }
     }
 
+    function exportData() {
+        const dataStr = window.db.exportData();
+        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        const exportFileDefaultName = 'studysphere_backup.json';
+
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+        showToast('Success', 'Data exported successfully.', 'success');
+    }
+
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const success = window.db.importData(e.target.result);
+            if (success) {
+                showToast('Success', 'Data imported successfully. Reloading...', 'success');
+                setTimeout(() => window.location.reload(), 1500);
+            } else {
+                showToast('Error', 'Failed to import data.', 'error');
+            }
+        };
+        reader.readAsText(file);
+    }
+
     function submitProfileForm(e) {
         e.preventDefault();
         const fd = new FormData(e.target);
@@ -1664,6 +1696,8 @@ window.pages = (() => {
         openAvatarSelector,
         selectAvatarDirect,
         saveCustomAvatarUrl,
-        submitProfileForm
+        submitProfileForm,
+        exportData,
+        importData
     };
 })();
