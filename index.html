@@ -11,11 +11,14 @@
     <meta property="og:title" content="StudySphere - Student Collaboration & Productivity Platform">
     <meta property="og:description" content="Streamline your study routine, collaborate with peers, share notes, track assignments, and ask questions in forums.">
     <meta property="og:type" content="website">
-    <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="shortcut icon" href="assets/favicon.svg">
+    
+    <!-- Favicon & PWA Manifest -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="shortcut icon" href="assets/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
 
-<title>StudySphere - Student Collaboration & Productivity Platform</title>
+    <title>StudySphere - Student Collaboration & Productivity Platform</title>
     
     <!-- Core & Pages CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -166,5 +169,20 @@
     <script src="js/db.js"></script>
     <script src="js/pages.js"></script>
     <script src="js/ui.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+    </script>
 </body>
 </html>
