@@ -82,6 +82,10 @@
 
 body {
     background-color: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 0% 0%, var(--primary-glow) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, var(--secondary-glow) 0%, transparent 50%);
+    background-attachment: fixed;
     color: var(--text-primary);
     font-family: var(--font-body);
     overflow-x: hidden;
@@ -426,17 +430,19 @@ ul {
     border-radius: var(--radius-lg);
     padding: 24px;
     box-shadow: var(--shadow-main);
-    transition: border-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .glass-card:hover {
-    border-color: var(--border-hover);
+    border-color: rgba(var(--primary-rgb), 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px -10px rgba(0,0,0,0.3), 0 0 20px 0 var(--primary-glow);
 }
 
 .glass-card.interactive:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px 0 rgba(0,0,0,0.15);
-    border-color: rgba(var(--primary-rgb), 0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.4), 0 0 30px 0 var(--primary-glow);
+    border-color: rgba(var(--primary-rgb), 0.5);
 }
 
 /* Buttons */
@@ -876,4 +882,15 @@ textarea.form-control {
   .footer-links a {
     font-size: 0.8rem;
   }
+}
+
+/* Custom Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite;
 }
