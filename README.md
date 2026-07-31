@@ -1,5 +1,6 @@
 # 🎓 StudySphere — Student Collaboration & Productivity Platform
 
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![First Timers Friendly](https://img.shields.io/badge/first--timers-friendly-blue.svg?style=flat-square)](https://www.firsttimersonly.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
