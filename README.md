@@ -1,4 +1,4 @@
-# 🎓 StudySphere — Student Collaboration and Productivity Platform
+# 🎓 StudySphere — Student Collaboration & Productivity Platform
 
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
